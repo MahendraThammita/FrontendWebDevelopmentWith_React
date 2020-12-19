@@ -1,5 +1,6 @@
 import React , {Component} from 'react';
-import {Card , CardBody , CardText , CardTitle , CardImg , CardImgOverlay} from 'reactstrap';
+import {Card ,CardTitle , CardImg , CardImgOverlay} from 'reactstrap';
+import DishDetail from './DishdetailComponent'
 
 class Menu extends Component {
     constructor(props){
@@ -20,26 +21,7 @@ class Menu extends Component {
 
     onDishSelect(dish){
         this.setState({selectedDish:dish});
-    }
-    renderDish(dish){
-        if (dish != null) {
-            return(
-                    <Card>
-                        <CardImg top src={dish.image} alt={dish.image}/>
-                        <CardBody>
-                            <CardTitle>{dish.name}</CardTitle>
-                            <CardText>{dish.description}</CardText>
-                        </CardBody>
-                    </Card>
-            );
-        } else {
-            return ( 
-                <div> </div>
-            );
-        }
-    }
-
-    
+    }    
 
     render() {
 
@@ -63,11 +45,9 @@ class Menu extends Component {
                 <div className= "row">
                         {menu}
                 </div>
-                <div className= "row">
-                    <div className="col-12 col-md-5 m-1">
-                        {this.renderDish(this.state.selectedDish)}
-                    </div>
-                </div>
+                {/* Insted of renderDish function DishDetaill component directly called and 'null'
+                scenario will handle in the render method of the DishDetail component */}
+                <DishDetail details={this.state.selectedDish}/>
             </div>
         );
     }
