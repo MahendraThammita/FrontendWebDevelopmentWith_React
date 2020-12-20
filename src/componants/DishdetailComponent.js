@@ -11,8 +11,17 @@ class DishDetail extends Component{
 
     }
 
+    componentDidMount() {
+        console.log("This is componentDidMount Method of DishDetail Componant");
+    }
+
+    componentDidUpdate() {
+        console.log("This is componentDidUpdate Method of DishDetail Componant");
+    }
+
     renderComments(dish){
 
+        
         if (dish != null) {
             
         let commentsList = dish.comments.map((comment) => {
@@ -41,6 +50,7 @@ class DishDetail extends Component{
 
     render(){
 
+        console.log("This is render Method of DishDetail Componant");
         let dish = this.props.dish;
         if(dish != null){
             return (

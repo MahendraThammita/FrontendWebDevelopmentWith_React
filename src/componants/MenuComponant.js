@@ -13,6 +13,10 @@ class Menu extends Component {
         console.log("This is componentDidMount Method of MenuComponanta Componant");
     }
 
+    componentDidUpdate(){
+        console.log("This is componentDidUpdate Method of MenuComponant Componant");
+    }
+
     render() {
 
         console.log("This is render method of MenuComponanta Componant");
