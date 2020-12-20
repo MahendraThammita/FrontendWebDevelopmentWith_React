@@ -41,20 +41,22 @@ class DishDetail extends Component{
 
     render(){
 
-        let dish = this.props.details;
+        let dish = this.props.dish;
         if(dish != null){
             return (
-            <div className="row">
+            <div className="container">
+                <div className="row">
                 <Card className="col-12 col-md-5 m-1">
                     <CardImg top src={dish.image} alt={dish.image}/>
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
                     </CardBody>
-                 </Card>
-                 <div className="col-12 col-md-5 m-1">
+                </Card>
+                <div className="col-12 col-md-5 m-1">
                     {this.renderComments(dish)}
-                 </div>
+                </div>
+            </div>
             </div>
         );
 
