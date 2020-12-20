@@ -1,35 +1,28 @@
-import React , {Component} from 'react';
+import React from 'react';
 import {Card ,CardTitle , CardImg , CardImgOverlay} from 'reactstrap';
 
 
-class Menu extends Component {
-    constructor(props){
-        //props are properties that are recieving as parameters to a componant.
-        super(props);
-        
+    // This is a functional componant. this is a one way of creating functional componants
+    function RenderMenuItem({dish , onClick}) {
+        return(
+            <Card key={dish.id} onClick={() => onClick(dish.id)}>
+                <CardImg width="100%" src={dish.image} alt={dish.name}/>
+                <CardImgOverlay>
+                    <CardTitle>{dish.name}</CardTitle>
+                </CardImgOverlay>
+            </Card>
+        );
     }
 
-    componentDidMount(){
-        console.log("This is componentDidMount Method of MenuComponanta Componant");
-    }
+    // This is a functional componant. this is another way of creating functional componants
+    //if you know what are the props they can be passed like the functional componant above
+    //othervice they can be passed as in here.
+    const Menu = (props) => {
 
-    componentDidUpdate(){
-        console.log("This is componentDidUpdate Method of MenuComponant Componant");
-    }
-
-    render() {
-
-        console.log("This is render method of MenuComponanta Componant");
-
-        const menu = this.props.dishes.map((dish) => {
+        const menu = props.dishes.map((dish) => {
         return(
             <div className= "col-12 col-md-5 m-1">
-                <Card key={dish.id} onClick={() => this.props.onClick(dish.id)}>
-                    <CardImg width="100%" src={dish.image} alt={dish.name}/>
-                    <CardImgOverlay>
-                        <CardTitle>{dish.name}</CardTitle>
-                    </CardImgOverlay>
-                </Card>
+                <RenderMenuItem dish = {dish} onClick = {props.onClick} />
             </div>
         );
     });
@@ -41,7 +34,8 @@ class Menu extends Component {
                 </div>
             </div>
         );
+        
     }
-}
+
 
 export default Menu;
