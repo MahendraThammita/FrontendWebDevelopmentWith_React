@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {Navbar , NavbarBrand} from 'reactstrap';
 import Menu from './MenuComponant';
 import DishDetail from './DishdetailComponent'
+import Header from './HeaderComponent';
+import Footer from './FooterComponent'
 import {DISHES} from '../shared/dishes';
 
 class Main extends Component{
@@ -22,13 +23,8 @@ class Main extends Component{
   render() {
     return (
     <div className="App">
-      <Navbar dark color="primary">
-        <div className="container">
-          <NavbarBrand href="/" >Ristorante Con Fusion</NavbarBrand>
-        </div>
-
-      </Navbar>
-
+      
+      <Header/>
       {/* There onClick is a prop that pass into the menuComponant
       By the prop 'onClick' , it will pass an arrow function to the menuComponant  */}
       <Menu dishes = {this.state.dishes} onClick = {(dishId) => this.onDishSelect(dishId)} />
@@ -36,6 +32,9 @@ class Main extends Component{
       {/* filter function goes through all the elements in an array and returns that passes a
        given function inside of the filter function */}
       <DishDetail dish = {this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]}/>
+       
+      <Footer/>
+      
     </div>
   );
   }
