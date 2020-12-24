@@ -1,15 +1,59 @@
 import React , {Component} from 'react';
-import {Jumbotron , Navbar , NavbarBrand} from 'reactstrap'
+import {Jumbotron , Navbar , NavbarBrand , Nav , NavItem , Collapse , NavbarToggler} from 'reactstrap'
+import {NavLink} from 'react-router-dom'
 
 class Header extends Component{
+
+    constructor(props){
+        super(props);
+        this.state={
+            isNavOpen:false
+        }
+
+        this.toggleNav = this.toggleNav.bind(this);
+    }
+
+    toggleNav() {
+        this.setState({
+            isNavOpen : !this.state.isNavOpen
+        });
+    }
+
+
     render() {
         return(
-            <React.Fragment>
-            <Navbar dark>
+        <div>
+            {/* expand = "md" means the navbar will shown in its full form fron medium to upwords */}
+            <Navbar dark expand="md">
                 <div className="container">
-                    <NavbarBrand href="/" >Ristorante Con Fusion</NavbarBrand>
+                    {/* Below type of function calling can be done by binding the intended function */}
+                    <NavbarToggler onClick={this.toggleNav}/>
+                    <NavbarBrand  className="mr-auto" href="/">
+                        <img src='assets/images/logo.png' height="30" width="41" alt='Ristorante Con Fusion'/>
+                    </NavbarBrand>
+                    {/* isOpen expects a boolean attribute that specifies its content is open or folded */}
+                    {/* This Collaps will apply to navbar since it is mentioned navbar inside of the colleps tag */}
+                     <Collapse isOpen = {this.state.isNavOpen} navbar >
+                        <Nav navbar>
+                            <NavItem>
+                                {/* NavLink is very similar to the a tag in html and this will remain as active
+                                while we are in the mentioned page */}
+                                <NavLink className="nav-link" to="/home"><span className="fa fa-home fa-lg"></span> Home </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to="/aboutus"><span className="fa fa-info fa-lg"></span> About Us </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to="/menu"><span className="fa fa-list fa-lg"></span> Menu </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink className="nav-link" to="/contactus"><span className="fa fa-address-card fa-lg"></span> Contact Us </NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Collapse>
                 </div>
-             </Navbar>
+            </Navbar>
+             
              <Jumbotron>
                  <div className="container">
                      <div className="row row-header">
@@ -20,7 +64,7 @@ class Header extends Component{
                      </div>
                  </div>
              </Jumbotron>
-        </React.Fragment>
+        </div>
         );
     }
 }

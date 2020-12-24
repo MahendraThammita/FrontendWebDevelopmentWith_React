@@ -3,7 +3,9 @@ import Menu from './MenuComponant';
 import DishDetail from './DishdetailComponent'
 import Header from './HeaderComponent';
 import Footer from './FooterComponent'
+import Home from './HomeComponent';
 import {DISHES} from '../shared/dishes';
+import {Switch , Route ,Redirect} from 'react-router-dom'
 
 class Main extends Component{
 
@@ -15,23 +17,28 @@ class Main extends Component{
     };
   }
 
-    onDishSelect(dishId) {
-        this.setState({selectedDish:dishId});
-    }    
-
+  
 
   render() {
+
+    const HomeComponent = () => {
+      return(
+        <Home/>
+      );
+    }
+
     return (
     <div className="App">
       
       <Header/>
-      {/* There onClick is a prop that pass into the menuComponant
-      By the prop 'onClick' , it will pass an arrow function to the menuComponant  */}
-      <Menu dishes = {this.state.dishes} onClick = {(dishId) => this.onDishSelect(dishId)} />
-
-      {/* filter function goes through all the elements in an array and returns that passes a
-       given function inside of the filter function */}
-      <DishDetail dish = {this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]}/>
+      
+      <Switch>
+        {/* we can add the componant along with the route.also this allows us to pass the props to the 
+        componants like in the second line below */}
+          <Route path="/home" component={HomeComponent}/>
+          <Route exact path="/menu" component={()=> <Menu dishes={this.state.dishes}/>}/>
+          <Redirect to="/home"/>
+      </Switch>
        
       <Footer/>
       
