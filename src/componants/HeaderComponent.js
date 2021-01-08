@@ -9,8 +9,9 @@ class Header extends Component{
         this.state={
             isNavOpen:false
         }
-
+        //to available thiese kinds of methods (toggleNav) within JSX we need to bind it
         this.toggleNav = this.toggleNav.bind(this);
+        //then toggleNav in bounded to "this".since we are allowed to use it along with "this" keyword
     }
 
     toggleNav() {
