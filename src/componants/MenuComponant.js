@@ -4,9 +4,11 @@ import {Card ,CardTitle , CardImg , CardImgOverlay , Breadcrumb , BreadcrumbItem
 
 
     // This is a functional componant. this is a one way of creating functional componants
-    function RenderMenuItem({dish , onClick}) {
+    function RenderMenuItem({dish}) {
         return(
-            <Card>
+            <Card >
+                {/* this will specify the link in js format.make sure to use the back quotation mark that
+                is located on the top left corner of the keyboard. */}
                 <Link to={`/menu/${dish.id}`}>
                     <CardImg width="100%" src={dish.image} alt={dish.name}/>
                     <CardImgOverlay>
@@ -25,7 +27,7 @@ import {Card ,CardTitle , CardImg , CardImgOverlay , Breadcrumb , BreadcrumbItem
         const menu = props.dishes.map((dish) => {
         return(
             <div className= "col-12 col-md-5 m-1">
-                <RenderMenuItem dish = {dish} onClick = {props.onClick} />
+                <RenderMenuItem dish = {dish}/>
             </div>
         );
     });

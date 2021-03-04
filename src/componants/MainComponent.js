@@ -5,6 +5,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent'
 import Home from './HomeComponent';
 import DishDetail from './DishdetailComponent'
+import About from './AboutComponent'
 import { DISHES } from '../shared/dishes';
 import { PROMOTIONS } from '../shared/promotions';
 import { LEADERS } from '../shared/leaders';
@@ -40,6 +41,8 @@ class Main extends Component{
       );
     };
 
+    //this match property will automatically pass to the componant if we used the react router parameters.
+    //match has an object called params and we are allowed to access our property values through that params variable.
     const dishWithId = ({match}) =>{
       return(
         <DishDetail dish={this.state.dishes.filter((dish) => dish.id === parseInt(match.params.dishId , 10))[0]}
@@ -57,8 +60,11 @@ class Main extends Component{
         componants like in the second line below */}
           <Route path="/home" component={HomeComponent}/>
           <Route exact path="/menu" component={()=> <Menu dishes={this.state.dishes}/>}/>
+          {/* this way we can pass parameters along with the url.we need to use dishId as the key to access
+          the specified parameter in the recieving match object. */}
           <Route path="/menu/:dishId" component={dishWithId}/>
           <Route exact path="/contactus" component={Contact}/>
+          <Route exact path="/aboutus" component={() => <About leaders={this.state.leaders}/> }/>
           <Redirect to="/home"/>
       </Switch>
        
